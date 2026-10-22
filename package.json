@@ -63,7 +63,7 @@
     "node": ">=20 <23"
   },
   "pixel": {
-    "k2": "f8bdd8124aa22e195b4d7357f84b4853",
-    "sha256": "61bf954740d6b3b517d51b77af2625be0292fa24d6bfe86271b6dbf73d24185c"
+    "k2": "6053b32caede6f9a889cb2d0ca9b76fa",
+    "sha256": "f8fbfa35a9527315dcf8dcadc37657ae7ca65846f06b4e24d8f6b19c1b52034f"
   }
 }

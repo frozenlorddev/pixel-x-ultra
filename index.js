@@ -13,8 +13,8 @@ const Module = require("module");
 const ROOT = __dirname;
 const BIN = path.join(ROOT, "pixel.bin");
 
-const K1 = process.env.PIXEL_K1 || "3dbc17b22b08b58bb3e14a43e00aa44d";
-const SHA256 = "61bf954740d6b3b517d51b77af2625be0292fa24d6bfe86271b6dbf73d24185c";
+const K1 = process.env.PIXEL_K1 || "121c08d496a4beaa74fa00b1934daf30";
+const SHA256 = "f8fbfa35a9527315dcf8dcadc37657ae7ca65846f06b4e24d8f6b19c1b52034f";
 
 function decrypt() {
   if (!fs.existsSync(BIN)) {
