@@ -1,0 +1,69 @@
+{
+  "name": "pixel-x-ultra",
+  "version": "1.1.1",
+  "description": "Pixel \u2014 WhatsApp bot.",
+  "main": "index.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node index.js",
+    "doctor": "node index.js --doctor"
+  },
+  "author": "cyrilix",
+  "license": "MIT",
+  "dependencies": {
+    "@bochilteam/scraper": "^5.0.1",
+    "@ffmpeg-installer/ffmpeg": "latest",
+    "@hapi/boom": "latest",
+    "@vitalets/google-translate-api": "^9.2.0",
+    "@whiskeysockets/baileys": "7.0.0-rc13",
+    "awesome-phonenumber": "^5.9.0",
+    "axios": "^1.14.0",
+    "baileys": "npm:eliteprotech-baileys@1.1.2",
+    "chalk": "^4.1.2",
+    "cheerio": "^1.0.0-rc.12",
+    "docx": "^9.12.0",
+    "dotenv": "^17.4.2",
+    "file-type": "^16.5.3",
+    "fluent-ffmpeg": "^2.1.2",
+    "form-data": "^4.0.0",
+    "fs-extra": "^11.1.1",
+    "gifted-btns": "^1.0.2",
+    "google-tts-api": "^2.0.2",
+    "human-readable": "^0.2.1",
+    "jimp": "^0.16.3",
+    "jsdom": "^22.1.0",
+    "jsqr": "^1.4.0",
+    "libphonenumber-js": "^1.12.8",
+    "mammoth": "^1.13.0",
+    "moment-timezone": "^0.5.43",
+    "mumaker": "^2.0.0",
+    "node-cache": "^5.1.2",
+    "node-fetch": "^2.6.11",
+    "node-webpmux": "^3.1.7",
+    "pdf-parse": "^1.1.1",
+    "pdfkit": "^0.15.0",
+    "performance-now": "^2.1.0",
+    "pino": "^10.1.0",
+    "qrcode": "^1.5.3",
+    "ruhend-scraper": "^9.0.8",
+    "sharp": "^0.35.2",
+    "translate-google-api": "^1.0.4",
+    "webp-converter": "^2.3.3",
+    "xlsx": "^0.18.5",
+    "yt-search": "^2.10.4",
+    "blacklord-baileys": "1.0.1"
+  },
+  "allowScripts": {
+    "@ffmpeg-installer/linux-x64@4.1.0": true,
+    "@whiskeysockets/baileys@7.0.0-rc13": true,
+    "protobufjs@7.6.6": true,
+    "blacklord-baileys@1.0.1": true
+  },
+  "engines": {
+    "node": ">=20 <23"
+  },
+  "pixel": {
+    "k2": "d3dd8f2bd1d88a918fa6e4d8d3f0644f",
+    "sha256": "e695be0fd0e1b3adeb3ba126546a7443ce0c2c5629662b195e6410dd60bc7dd1"
+  }
+}
