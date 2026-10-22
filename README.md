@@ -1,12 +1,12 @@
 # Pixel X Ultra
 
-A WhatsApp bot for **one** WhatsApp account. Node.js 20–22, no database server, one
-process, ~690 commands behind a `.` prefix.
-
 ![Pixel X Ultra](https://raw.githubusercontent.com/frozenlorddev/pixel-x-ultra/main/database/pixelpic.jpg)
 
-> Prefer to be sure? Fork or clone this repo only —
-> `github.com/frozenlorddev/pixel-x-ultra`. Session string: **<https://pixel-session-gen.onrender.com>**
+**This is the official repository for Pixel X Ultra** —
+`github.com/frozenlorddev/pixel-x-ultra`. Any other copy circulating elsewhere is
+unofficial and may be modified.
+
+**Generate a session: <https://pixel-session-gen.onrender.com>**
 
 ---
 
