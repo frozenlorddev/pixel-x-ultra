@@ -1,144 +1,110 @@
-# Pixel X Ultra
+<div align="center">
+  <h1>PIXEL X ULTRA</h1>
+  <a href="https://git.io/typing-svg">
+    <img src="https://readme-typing-svg.demolab.com?font=Rockwell&size=45&pause=1000&color=33ff00&center=true&width=800&height=80&lines=Blacklord;Multi+Device+Whatsapp+Bot;Made+by+Blacklord" alt="Typing SVG" />
+  </a>
+</div>
 
-![Pixel X Ultra](https://raw.githubusercontent.com/frozenlorddev/pixel-x-ultra/main/database/pixelpic.jpg)
-
-**This is the official repository for Pixel X Ultra** —
-`github.com/frozenlorddev/pixel-x-ultra`. Any other copy circulating elsewhere is
-unofficial and may be modified.
-
-**Generate a session: <https://pixel-session-gen.onrender.com>**
+<div align="center">
+  <img src="./assets/pixel.jpg" alt="PIXEL X ULTRA" height="250">
+</div>
 
 ---
 
-## Fork and run
+<div align="center">
+  <img src="https://readme-typing-svg.demolab.com/?lines=The+bot+supports+deployment;On+all+free+panels+easily" alt="Typing SVG" />
+</div>
 
-1. **Fork** this repo (top right → Fork), or clone it:
+---
+
+> Quick Actions
+
+<div align="center">
+
+| Action | Link |
+|--------|------|
+| **Fork Repository** | <a href="https://github.com/frozenlorddev/pixel-x-ultra/fork"><img src="https://img.shields.io/badge/Fork%20Repo-24292e?style=for-the-badge&logo=github&logoColor=white"/></a> |
+| **Download ZIP** | <a href="https://github.com/frozenlorddev/pixel-x-ultra/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/Download-2ea043?style=for-the-badge&logo=github&logoColor=white"/></a> |
+
+</div>
+
+---
+
+> 🌐 Deployment Options
+
+<div align="center">
+
+| Platform | Button |
+|----------|--------|
+| **Heroku** | <a href="https://dashboard.heroku.com/new?template=https://github.com/frozenlorddev/pixel-x-ultra"><img src="https://img.shields.io/badge/Heroku-6762A6?style=for-the-badge&logo=heroku&logoColor=white"/></a> |
+| **Railway** | <a href="https://railway.app/new"><img src="https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white"/></a> |
+| **Render** | <a href="https://render.com"><img src="https://img.shields.io/badge/Render-0099ff?style=for-the-badge&logo=render&logoColor=white"/></a> |
+| **Koyeb (Docker)** | <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/frozenlorddev/pixel-x-ultra&branch=main&builder=dockerfile"><img src="https://img.shields.io/badge/Koyeb-6C4CF1?style=for-the-badge&logo=koyeb&logoColor=white"/></a> |
+| **Pterodactyl** | <a href="https://pedrodom.thecortana.tech"><img src="https://img.shields.io/badge/Ptero-0B0D0E?style=for-the-badge&logo=serverfault&logoColor=white"/></a> |
+
+</div>
+
+---
+
+> 🔑 Session & Pairing
+
+<div align="center">
+
+| Method | Button |
+|--------|--------|
+| **Session ID** | <a href="https://pixel-session-gen.onrender.com"><img src="https://img.shields.io/badge/Session%20ID-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
+| **Pairing Site** | <a href="https://pixel-x-ultra-multi.vercel.app"><img src="https://img.shields.io/badge/Pair%20Code-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
+| **Pair in Terminal** | <a href="https://github.com/frozenlorddev/pixel-x-ultra#quick-start"><img src="https://img.shields.io/badge/QR%20%2F%20Code-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
+
+</div>
+
+---
+
+> 💬 Support & Community
+
+<div align="center">
+
+| Platform | Link |
+|----------|------|
+| **WhatsApp Group** | <a href="https://chat.whatsapp.com/IQHBt0lOLmEK67FFA9fnQU"><img src="https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
+| **Issues** | <a href="https://github.com/frozenlorddev/pixel-x-ultra/issues"><img src="https://img.shields.io/badge/Report%20Bug-24292e?style=for-the-badge&logo=github&logoColor=white"/></a> |
+
+</div>
+
+---
+
+<details>
+<summary><b>⚡ Quick start</b></summary>
+
+<br>
 
 ```bash
 git clone https://github.com/frozenlorddev/pixel-x-ultra
 cd pixel-x-ultra
-```
-
-2. **Install**:
-
-```bash
 npm install
-```
-
-3. **Start**:
-
-```bash
 npm start
 ```
 
-First start with no session shows a menu — pick `2` to pair with a phone number.
-That's it; credentials are saved in `session/` and reused on every restart.
-
-Hosting it somewhere? Keep `session/` on a persistent disk, or set `SESSION_ID` in
-your environment so it re-logs in after a restart. `Procfile` and `.env.example`
-cover the common hosts.
-
----
-
-## Pairing
-
-### 1. Session string (fastest)
-
-1. Open <https://pixel-session-gen.onrender.com>
-2. Enter the bot's number in international format, no `+` — e.g. `254712345678`
-3. Enter the 8-character code it gives you in
-   **WhatsApp → Settings → Linked devices → Link with phone number**
-4. Copy the string it prints (starts with `Pixel~`) into `SESSION_ID`
+**1. Session string (fastest)** — open the session generator, enter the number in international format, copy the string it prints and start with it:
 
 ```bash
 SESSION_ID=Pixel~... npm start
 ```
 
-### 2. Pair from the bot itself
+**2. Pair from the bot itself** — prints an 8-character code for WhatsApp → Linked devices → Link with phone number:
 
 ```bash
 PAIR_PHONE=254712345678 npm start
 ```
 
-The console prints an 8-character code; enter it in
-**Linked devices → Link with phone number**. Best on a panel or any host without a
-terminal you can type into.
+**3. Interactive menu** — `npm start`, then `[1]` paste a session ID or `[2]` pair with a phone number.
 
-### 3. Interactive menu
+Once paired, `session/creds.json` is written and reused. Only pair again if WhatsApp unlinks the device (401 / logged out). Use a number that is not the one you message the bot from — a bot cannot reply to itself.
 
-```bash
-npm start
-```
-
-```
-[1] paste a session ID
-[2] pair with a phone number
-```
-
-Pick `2`, type the number, enter the code. Needs a real terminal — that's why option
-2 exists.
-
-Once paired, `session/creds.json` is written and reused. You only pair again if
-WhatsApp unlinks the device (`401 device was logged out`).
-
-**Use a number that is not the phone you message the bot from.** A bot cannot reply
-to itself.
+</details>
 
 ---
 
-## Commands
-
-Prefix is `.` by default. Send `.menu` — plain `menu` without the dot is ignored.
-
-| Command | What it does |
-|---|---|
-| `.menu` | The full boxed menu |
-| `.fullmenu` / `.menulist` | Every command, flat list |
-| `.setprefix <x>` | Change the prefix to any word, number or emoji |
-| `.prefixfree on` | Run commands with no prefix at all |
-| `.settings` | Boxed read-out of every toggle |
-| `.setstick <cmd>` | Reply to a sticker to bind it to a command |
-| `.checkban <number>` | Check whether a number is on WhatsApp / banned |
-| `.play <song>` | Send an MP3 as a file and as audio |
-
-Commands work in groups and in DMs. Admin-only commands need you to be a group admin
-or the bot's owner; owner commands need your number in `database/owner.json`
-(digits only, no `+`).
-
-**Bot answers nobody?** Check `database/settings.json` — `"mode"` must be `"public"`.
-In `private` mode only the owner gets replies. Change it with `.setmode public`.
-
----
-
-## Settings
-
-Environment variable or `.env` file:
-
-| Variable | Default | Meaning |
-|---|---|---|
-| `SESSION_ID` | — | Session string. Skips pairing entirely. |
-| `PAIR_PHONE` | — | Number to request a pairing code for at boot. |
-| `PORT` | `3000` | HTTP port for the landing page. Hosts usually inject it. |
-| `BOT_NAME` | `Pixel X Ultra` | Name in menus and replies. |
-| `OWNER_NAME` | `Pixel X Ultra` | Owner name in menus. |
-| `PREFIX` | `.` | Command prefix. |
-| `LINK` | this repo | Target of the menu's REPO button. |
-
----
-
-## Troubleshooting
-
-| Symptom | Cause | Fix |
-|---|---|---|
-| Connects but never replies | Message sent without the prefix | Send `.menu` |
-| Connects but never replies | You messaged the bot from its own number | Message it from another phone |
-| `device was logged out` | Session invalidated | Pair again |
-| Silent after a redeploy | `session/` was wiped (ephemeral disk) | Set `SESSION_ID` in env |
-| `Stream Errored (conflict)` | Same session open twice | Run one instance per account |
-| Only the owner gets replies | `mode` is `private` | `.setmode public` |
-
----
-
-## License
-
-MIT. See `LICENSE`.
+<div align="center">
+  <sub>Built with ❤️ by <a href="https://github.com/frozenlorddev">Blacklord</a></sub>
+</div>
