@@ -16,7 +16,7 @@ module.exports = {
   OWNER_NAME: process.env.OWNER_NAME || 'Pixel',
   SUDO_NUMBER: process.env.SUDO_NUMBER || '',   // extra owner number, digits only
   BOT_NAME: process.env.BOT_NAME || 'Pixel X Ultra',
-  BOT_VERSION: '3.1.0',
+  BOT_VERSION: '3.1.1',
 
   // ── Behaviour ────────────────────────────────────────────
   SESSION_DIR: process.env.SESSION_DIR || './sessions',
