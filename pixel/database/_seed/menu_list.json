@@ -112,7 +112,6 @@
     "Gcalert",
     "Getgroupdesc",
     "Getgroupprofile",
-    "Goodbye",
     "Group",
     "Hidetag",
     "Invite",
@@ -134,19 +133,16 @@
     "Savecontact",
     "Sendcontact",
     "Setdesc",
-    "Setgoodbye",
     "Setgrouppicture",
     "Setgroupprofile",
     "Setsticker",
-    "Setwelcome",
     "Staff",
     "Tagadmin",
     "Tagall",
     "Totag",
     "Unmute",
     "Unwarn",
-    "Warn",
-    "Welcome"
+    "Warn"
    ]
   },
   {

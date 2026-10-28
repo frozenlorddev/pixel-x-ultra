@@ -53,8 +53,7 @@
 | Method | Button |
 |--------|--------|
 | **Session ID** | <a href="https://pixel-session-gen.onrender.com"><img src="https://img.shields.io/badge/Session%20ID-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
-| **Pairing Site** | <a href="https://pixel-x-ultra-multi.vercel.app"><img src="https://img.shields.io/badge/Pair%20Code-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
-| **Pair in Terminal** | <a href="https://github.com/frozenlorddev/pixel-x-ultra#quick-start"><img src="https://img.shields.io/badge/QR%20%2F%20Code-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
+| **Pair in Terminal** | <a href="https://github.com/frozenlorddev/pixel-x-ultra#quick-start"><img src="https://img.shields.io/badge/Pair%20Code-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
 
 </div>
 
@@ -94,12 +93,41 @@ SESSION_ID=Pixel~... npm start
 **2. Pair from the bot itself** — prints an 8-character code for WhatsApp → Linked devices → Link with phone number:
 
 ```bash
-PAIR_PHONE=254712345678 npm start
+PHONE_NUMBER=254712345678 npm start
 ```
 
 **3. Interactive menu** — `npm start`, then `[1]` paste a session ID or `[2]` pair with a phone number.
 
-Once paired, `session/creds.json` is written and reused. Only pair again if WhatsApp unlinks the device (401 / logged out). Use a number that is not the one you message the bot from — a bot cannot reply to itself.
+Once paired, `sessions/main/creds.json` is written and reused. Only pair again if WhatsApp unlinks the device (401 / logged out). Use a number that is not the one you message the bot from — a bot cannot reply to itself.
+
+</details>
+
+---
+
+<details>
+<summary><b>🔒 What ships in this repository</b></summary>
+
+<br>
+
+This is the packaged build: the bot logic lives in `pixel.bin`, an AES-256-GCM
+blob that `index.js` decrypts in memory after verifying its SHA-256. Nothing in
+the repository is plaintext source, and the bundle is never written to disk.
+
+Editable on purpose:
+
+| File | Holds |
+|------|-------|
+| `settings.js` | bot name, owner name, prefix, AI keys — every value falls back to env |
+| `database/` | menu list, stickers, per-chat toggles |
+| `pixel/database/` | artwork and seed data |
+| `.env` | `SESSION_ID`, `PHONE_NUMBER`, `PORT` |
+
+```bash
+npm run doctor     # verify the bundle hash, data files and pairing state
+```
+
+A corrupted or truncated `pixel.bin` stops with an integrity error instead of
+running half a bot — re-download the release if that happens.
 
 </details>
 

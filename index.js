@@ -1,6 +1,6 @@
 "use strict";
 /**
- * Pixel X Ultra — entry point.
+ * Pixel X Ultra — entry point (encrypted release).
  *
  *   node index.js            start the bot
  *   node index.js --doctor   check the install and exit
@@ -14,7 +14,8 @@ const ROOT = __dirname;
 const BIN = path.join(ROOT, "pixel.bin");
 
 const K1 = process.env.PIXEL_K1 || "c48228d2017ba7fc33640eb1a090828a";
-const SHA256 = "290486b20b766111a889501573eeab1e677eebffb7d682ed081bad0cc46fb026";
+const SHA256 = "6e79e8471a41200576d0eec5fcab71f3fe7e7ad777ac545f03f30ff72be64174";
+const ENTRY = "console.js";
 
 function decrypt() {
   if (!fs.existsSync(BIN)) {
@@ -99,28 +100,25 @@ Module._load = function (request, parent, isMain) {
   return originalLoad.apply(this, arguments);
 };
 
-try {
-  if (BUNDLE["lib/index.html"]) {
-    fs.mkdirSync(path.join(ROOT, "lib"), { recursive: true });
-    fs.writeFileSync(path.join(ROOT, "lib", "index.html"), BUNDLE["lib/index.html"]);
-  }
-} catch (_) {
-  /* read-only filesystem: the HTTP server falls back to its 404 */
-}
-
 if (process.argv.includes("--doctor")) {
   console.log("install        : ok (" + fs.statSync(BIN).size + " bytes, hash verified)");
-  for (const rel of ["database/settings.json", "database/menu_list.json", "database/pixelpic.jpg"]) {
+  console.log("modules        : " + Object.keys(BUNDLE).length + " encrypted files");
+  for (const rel of ["settings.js", "pixel/database/pixelpic.jpg", "database/pixel_menu_list.json"]) {
     console.log((fs.existsSync(path.join(ROOT, rel)) ? "  ok   " : "  MISS ") + rel);
   }
+  for (const key of ["console.js", "case.js", "pixel/engine.js", "pixel/lib/wa.js"]) {
+    console.log(
+      (Object.prototype.hasOwnProperty.call(BUNDLE, key) ? "  ok   " : "  MISS ") + key + "  (encrypted)",
+    );
+  }
   console.log(
-    "session         : " +
-      (fs.existsSync(path.join(ROOT, "session", "creds.json")) ? "paired" : "not paired yet"),
+    "session        : " +
+      (fs.existsSync(path.join(ROOT, "sessions", "main", "creds.json")) ? "paired" : "not paired yet"),
   );
   process.exit(0);
 }
 
-const entry = new Module(path.join(ROOT, "index.js"), null);
-entry.filename = path.join(ROOT, "index.js");
+const entry = new Module(path.join(ROOT, ENTRY), null);
+entry.filename = path.join(ROOT, ENTRY);
 entry.paths = Module._nodeModulePaths(ROOT);
-entry._compile(BUNDLE["index.js"], entry.filename);
+entry._compile(BUNDLE[ENTRY], entry.filename);
