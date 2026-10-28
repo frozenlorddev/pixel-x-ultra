@@ -1,6 +1,6 @@
 {
   "name": "pixel-x-ultra",
-  "version": "3.1.1",
+  "version": "3.1.2",
   "description": "Pixel — WhatsApp bot.",
   "main": "index.js",
   "type": "commonjs",
@@ -43,6 +43,6 @@
   },
   "pixel": {
     "k2": "823d786230b81405a2155f7fa571ed7e",
-    "sha256": "0787b9d7aa2484b7c32bc0f1f7ed92fa71a6059eee6b0a12a9ba20dd38d16090"
+    "sha256": "6c3624df725c541c2bf7bc79aa21fc3b38ef5c723c1eadebb5d5105139306da7"
   }
 }
