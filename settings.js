@@ -16,7 +16,7 @@ module.exports = {
   OWNER_NAME: process.env.OWNER_NAME || 'Pixel',
   SUDO_NUMBER: process.env.SUDO_NUMBER || '',   // extra owner number, digits only
   BOT_NAME: process.env.BOT_NAME || 'Pixel X Ultra',
-  BOT_VERSION: '3.0.1',
+  BOT_VERSION: '3.1.0',
 
   // ── Behaviour ────────────────────────────────────────────
   SESSION_DIR: process.env.SESSION_DIR || './sessions',
@@ -31,6 +31,14 @@ module.exports = {
   REQUIRED_GROUP_LINK: process.env.REQUIRED_GROUP_LINK || '',
   REQUIRED_CHANNEL_ID: process.env.REQUIRED_CHANNEL_ID || '',
   REQUIRED_GROUP_ID: process.env.REQUIRED_GROUP_ID || '',
+
+  // ── Self-update (.update) ────────────────────────────────
+  // Downloads this repo's latest build and writes the changed files over the
+  // old ones. sessions/, settings.js and database/ are never touched.
+  UPDATE_REPO: process.env.UPDATE_REPO || 'frozenlorddev/pixel-x-ultra-source',
+  UPDATE_BRANCH: process.env.UPDATE_BRANCH || 'main',
+  UPDATE_RESTART: true,          // exit after updating so the host restarts it
+  GITHUB_TOKEN: process.env.GITHUB_TOKEN || '',   // only needed for a private repo
 
   // ── Auto actions on connect ──────────────────────────────
   AUTO_FOLLOW_NEWSLETTERS: false,
