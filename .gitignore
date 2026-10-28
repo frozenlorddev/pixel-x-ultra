@@ -1,8 +1,4 @@
 node_modules/
-!pixel/node_modules/
-pixel/node_modules/*
-!pixel/node_modules/gifted-btns/
-node_modules/
 sessions/
 .env
 database/accounts/
