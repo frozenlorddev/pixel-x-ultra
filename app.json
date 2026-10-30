@@ -1,0 +1,35 @@
+{
+  "name": "Pixel X Ultra (single session)",
+  "description": "Single-session Pixel X Ultra WhatsApp bot",
+  "repository": "https://github.com/frozenlorddev/pixel-x-ultra-source",
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "formation": {
+    "worker": {
+      "quantity": 1,
+      "size": "basic"
+    }
+  },
+  "env": {
+    "SESSION_ID": {
+      "description": "Base64 session ID (or leave empty and set PHONE_NUMBER)",
+      "required": false
+    },
+    "PHONE_NUMBER": {
+      "description": "Phone number in international format, digits only",
+      "required": false
+    },
+    "OWNER_NUMBER": {
+      "description": "Owner number for commands (defaults to PHONE_NUMBER)",
+      "required": false
+    },
+    "PREFIX": {
+      "description": "Command prefix",
+      "value": ".",
+      "required": false
+    }
+  }
+}

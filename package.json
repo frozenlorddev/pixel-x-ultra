@@ -1,15 +1,16 @@
 {
-  "name": "pixel-x-ultra",
-  "version": "3.1.2",
-  "description": "Pixel — WhatsApp bot.",
+  "name": "pixel-x-ultra-single",
+  "version": "3.1.3",
+  "description": "Pixel X Ultra — single-session WhatsApp bot (console build)",
   "main": "index.js",
-  "type": "commonjs",
+  "private": true,
   "scripts": {
     "start": "node index.js",
     "doctor": "node index.js --doctor"
   },
-  "author": "cyrilix",
-  "license": "MIT",
+  "engines": {
+    "node": ">=20"
+  },
   "dependencies": {
     "@ffmpeg-installer/ffmpeg": "^1.1.0",
     "@vitalets/google-translate-api": "^9.2.1",
@@ -38,11 +39,10 @@
     "sharp": "^0.33.5",
     "yt-search": "^2.13.1"
   },
-  "engines": {
-    "node": ">=20 <23"
-  },
   "pixel": {
     "k2": "823d786230b81405a2155f7fa571ed7e",
-    "sha256": "6c3624df725c541c2bf7bc79aa21fc3b38ef5c723c1eadebb5d5105139306da7"
+    "sha256": "b008a8acafb378c6654e6bac6a63c3854eccb75671b4ec9e016e906d467ce0e2",
+    "entry": "console.js",
+    "modules": 28
   }
 }

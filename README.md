@@ -1,138 +1,77 @@
-<div align="center">
-  <h1>PIXEL X ULTRA</h1>
-  <a href="https://git.io/typing-svg">
-    <img src="https://readme-typing-svg.demolab.com?font=Rockwell&size=45&pause=1000&color=33ff00&center=true&width=800&height=80&lines=Blacklord;Multi+Device+Whatsapp+Bot;Made+by+Blacklord" alt="Typing SVG" />
-  </a>
-</div>
+# Pixel X Ultra — single user
 
-<div align="center">
-  <img src="./assets/pixel.jpg" alt="PIXEL X ULTRA" height="250">
-</div>
+One WhatsApp account, one process. Runs on a Pterodactyl panel, a VPS, Railway,
+Render, Koyeb or anything that can keep a Node process alive. Node.js 20+.
 
----
+This is the current build (3.0.0). The previous `index.js` / `Pixel.js` layout
+(v1.2.1) is preserved on the `backup/v1.2.1` branch and the `v1.2.1-pre-v3` tag.
 
-<div align="center">
-  <img src="https://readme-typing-svg.demolab.com/?lines=The+bot+supports+deployment;On+all+free+panels+easily" alt="Typing SVG" />
-</div>
+## What's in here
 
----
+| Path | Purpose |
+|---|---|
+| `console.js` | Entry point. Numbered login menu, session/pairing handling, reconnect loop, optional health server. |
+| `case.js` | Message router: owner checks, prefix handling, anti-delete, chatbot hooks. |
+| `pixel/engine.js` | The command engine — 711 command cases, group guards, anti-link/anti-call, status tools. |
+| `pixel/config.js` | Engine defaults (`global.prefix`, `global.botname`, …). |
+| `pixel/lib/` | Engine support modules: Baileys wiring, menu, endpoints, converters, uploaders, command index. |
+| `pixel/database/` | Menu list, seed files, bundled artwork. |
+| `helper/` | Listeners, group-admin helpers, logger, scope, uploader, welcome image. |
+| `settings.js` | Bot name, owner, prefix, AI keys. Ships empty — fill it in or use env. |
+| `console-log.js` | Coloured banner, boxes and log lines. |
 
-> Quick Actions
+Data is per account under `database/accounts/<number>/`; credentials live in
+`sessions/main/creds.json`. Both are gitignored.
 
-<div align="center">
-
-| Action | Link |
-|--------|------|
-| **Fork Repository** | <a href="https://github.com/frozenlorddev/pixel-x-ultra/fork"><img src="https://img.shields.io/badge/Fork%20Repo-24292e?style=for-the-badge&logo=github&logoColor=white"/></a> |
-| **Download ZIP** | <a href="https://github.com/frozenlorddev/pixel-x-ultra/archive/refs/heads/main.zip"><img src="https://img.shields.io/badge/Download-2ea043?style=for-the-badge&logo=github&logoColor=white"/></a> |
-
-</div>
-
----
-
-> 🌐 Deployment Options
-
-<div align="center">
-
-| Platform | Button |
-|----------|--------|
-| **Heroku** | <a href="https://dashboard.heroku.com/new?template=https://github.com/frozenlorddev/pixel-x-ultra"><img src="https://img.shields.io/badge/Heroku-6762A6?style=for-the-badge&logo=heroku&logoColor=white"/></a> |
-| **Railway** | <a href="https://railway.app/new"><img src="https://img.shields.io/badge/Railway-0B0D0E?style=for-the-badge&logo=railway&logoColor=white"/></a> |
-| **Render** | <a href="https://render.com"><img src="https://img.shields.io/badge/Render-0099ff?style=for-the-badge&logo=render&logoColor=white"/></a> |
-| **Koyeb (Docker)** | <a href="https://app.koyeb.com/deploy?type=git&repository=github.com/frozenlorddev/pixel-x-ultra&branch=main&builder=dockerfile"><img src="https://img.shields.io/badge/Koyeb-6C4CF1?style=for-the-badge&logo=koyeb&logoColor=white"/></a> |
-| **Pterodactyl** | <a href="https://pedrodom.thecortana.tech"><img src="https://img.shields.io/badge/Ptero-0B0D0E?style=for-the-badge&logo=serverfault&logoColor=white"/></a> |
-
-</div>
-
----
-
-> 🔑 Session & Pairing
-
-<div align="center">
-
-| Method | Button |
-|--------|--------|
-| **Session ID** | <a href="https://pixel-session-gen.onrender.com"><img src="https://img.shields.io/badge/Session%20ID-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
-| **Pair in Terminal** | <a href="https://github.com/frozenlorddev/pixel-x-ultra#quick-start"><img src="https://img.shields.io/badge/Pair%20Code-1a1a4e?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
-
-</div>
-
----
-
-> 💬 Support & Community
-
-<div align="center">
-
-| Platform | Link |
-|----------|------|
-| **WhatsApp Group** | <a href="https://chat.whatsapp.com/IQHBt0lOLmEK67FFA9fnQU"><img src="https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&logo=whatsapp&logoColor=white"/></a> |
-| **Issues** | <a href="https://github.com/frozenlorddev/pixel-x-ultra/issues"><img src="https://img.shields.io/badge/Report%20Bug-24292e?style=for-the-badge&logo=github&logoColor=white"/></a> |
-
-</div>
-
----
-
-<details>
-<summary><b>⚡ Quick start</b></summary>
-
-<br>
+## Run it
 
 ```bash
-git clone https://github.com/frozenlorddev/pixel-x-ultra
-cd pixel-x-ultra
 npm install
 npm start
 ```
 
-**1. Session string (fastest)** — open the session generator, enter the number in international format, copy the string it prints and start with it:
+First start with no session shows the login menu:
+
+1. **Paste a session ID** — a session string from a pairing generator.
+2. **Pair with a phone number** — type the number, get an 8-character code, then
+   enter it in WhatsApp → Linked devices → Link with phone number.
+
+For hosts with no terminal (panels that restart on their own, cloud workers),
+set env instead of typing:
 
 ```bash
-SESSION_ID=Pixel~... npm start
+SESSION_ID=Pixel!eyJ...     # start already connected
+PHONE_NUMBER=254712345678   # mint a pairing code at boot, prints in the log
+OWNER_NUMBER=254712345678   # who can run owner commands (defaults to the bot number)
+PREFIX=.                    # command prefix
+PORT=8080                   # optional: serve GET / as a health check
 ```
 
-**2. Pair from the bot itself** — prints an 8-character code for WhatsApp → Linked devices → Link with phone number:
+`settings.js` reads the same values from env, so nothing has to be committed.
+Optional keys: `BOT_NAME`, `OWNER_NAME`, `SUDO_NUMBER`, `GEMINI_API_KEY`,
+`OPENROUTER_API_KEY`, `OPENAI_API_KEY`, `REQUIRED_CHANNEL`, `REQUIRED_GROUP`.
 
-```bash
-PHONE_NUMBER=254712345678 npm start
+## Deployment notes
+
+- **Pterodactyl / VPS** — `npm install && npm start`, then use the menu. Keep the
+  console attached so you can read the pairing code.
+- **Render / Koyeb / Railway** — use the worker (background) service type, or set
+  `PORT` and use a web service; `render.yaml` is set up as a worker.
+- **Heroku** — `app.json` describes a `worker` dyno.
+- Credentials survive restarts. A restart only asks you to pair again if WhatsApp
+  logged the device out (401), in which case the log says so.
+
+## Commands worth knowing
+
+```
+.menu            everything
+.setprefix <x>   change the prefix to any word, number or emoji
+.prefixfree on   run commands with no prefix at all
+.setstick <cmd>  reply to a sticker to bind it to a command
+.checkban <num>  is that number on WhatsApp / banned
+.settings        boxed read-out of every toggle
 ```
 
-**3. Interactive menu** — `npm start`, then `[1]` paste a session ID or `[2]` pair with a phone number.
+## License
 
-Once paired, `sessions/main/creds.json` is written and reused. Only pair again if WhatsApp unlinks the device (401 / logged out). Use a number that is not the one you message the bot from — a bot cannot reply to itself.
-
-</details>
-
----
-
-<details>
-<summary><b>🔒 What ships in this repository</b></summary>
-
-<br>
-
-This is the packaged build: the bot logic lives in `pixel.bin`, an AES-256-GCM
-blob that `index.js` decrypts in memory after verifying its SHA-256. Nothing in
-the repository is plaintext source, and the bundle is never written to disk.
-
-Editable on purpose:
-
-| File | Holds |
-|------|-------|
-| `settings.js` | bot name, owner name, prefix, AI keys — every value falls back to env |
-| `database/` | menu list, stickers, per-chat toggles |
-| `pixel/database/` | artwork and seed data |
-| `.env` | `SESSION_ID`, `PHONE_NUMBER`, `PORT` |
-
-```bash
-npm run doctor     # verify the bundle hash, data files and pairing state
-```
-
-A corrupted or truncated `pixel.bin` stops with an integrity error instead of
-running half a bot — re-download the release if that happens.
-
-</details>
-
----
-
-<div align="center">
-  <sub>Built with ❤️ by <a href="https://github.com/frozenlorddev">Blacklord</a></sub>
-</div>
+MIT — see `LICENSE`.
