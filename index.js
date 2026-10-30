@@ -14,7 +14,7 @@ const ROOT = __dirname;
 const BIN = path.join(ROOT, "pixel.bin");
 
 const K1 = process.env.PIXEL_K1 || "c48228d2017ba7fc33640eb1a090828a";
-const SHA256 = "5860951da77c60f1be5ad78089483131e9e170cdfaa63643b39d821d41d7d09c";
+const SHA256 = "b0ca43e0d0eb4259998494b64bb983c36deac8a8d4c130520a9e8e05425f69b1";
 const ENTRY = "console.js";
 
 function decrypt() {

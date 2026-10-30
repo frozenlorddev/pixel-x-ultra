@@ -35,12 +35,12 @@ module.exports = {
   // ── Self-update (.update) ────────────────────────────────
   // Downloads this repo's latest build and writes the changed files over the
   // old ones. sessions/, settings.js and database/ are never touched.
-  // Leave commented to auto-detect: the source build pulls pixel-x-ultra-source,
-  // the encrypted build pulls pixel-x-ultra.
-  // UPDATE_REPO: 'frozenlorddev/pixel-x-ultra-source',
+  UPDATE_REPO: process.env.UPDATE_REPO || 'frozenlorddev/pixel-x-ultra',
   UPDATE_BRANCH: process.env.UPDATE_BRANCH || 'main',
   UPDATE_RESTART: true,          // exit after updating so the host restarts it
-  GITHUB_TOKEN: process.env.GITHUB_TOKEN || '',   // only needed for a private repo
+  // The repo above is private, so .update needs a token with Contents: read.
+  // Paste it here or set GITHUB_TOKEN in the environment.
+  GITHUB_TOKEN: process.env.GITHUB_TOKEN || '',
 
   // ── Auto actions on connect ──────────────────────────────
   AUTO_FOLLOW_NEWSLETTERS: false,
