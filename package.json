@@ -1,6 +1,6 @@
 {
   "name": "pixel-x-ultra-single",
-  "version": "3.1.3",
+  "version": "3.1.4",
   "description": "Pixel X Ultra — single-session WhatsApp bot (console build)",
   "main": "index.js",
   "private": true,
@@ -41,7 +41,7 @@
   },
   "pixel": {
     "k2": "823d786230b81405a2155f7fa571ed7e",
-    "sha256": "6ecbf0e3d6b09db2ed88fed359072867691405598cd9ed682d77b4f8b6a9c552",
+    "sha256": "5860951da77c60f1be5ad78089483131e9e170cdfaa63643b39d821d41d7d09c",
     "entry": "console.js",
     "modules": 28
   }
