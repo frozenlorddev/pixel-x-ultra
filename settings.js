@@ -35,11 +35,14 @@ module.exports = {
   // ── Self-update (.update) ────────────────────────────────
   // Downloads this repo's latest build and writes the changed files over the
   // old ones. sessions/, settings.js and database/ are never touched.
+  // Public repo, so .update needs no token. Note what it contains: the sealed
+  // build (index.js + pixel.bin). Updating from it replaces this editable
+  // source tree with the packaged one — .update asks first unless you type
+  // ".update force".
   UPDATE_REPO: process.env.UPDATE_REPO || 'frozenlorddev/pixel-x-ultra',
   UPDATE_BRANCH: process.env.UPDATE_BRANCH || 'main',
   UPDATE_RESTART: true,          // exit after updating so the host restarts it
-  // The repo above is private, so .update needs a token with Contents: read.
-  // Paste it here or set GITHUB_TOKEN in the environment.
+  // Only needed if you point UPDATE_REPO at a private repo.
   GITHUB_TOKEN: process.env.GITHUB_TOKEN || '',
 
   // ── Auto actions on connect ──────────────────────────────
