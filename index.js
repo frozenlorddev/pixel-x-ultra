@@ -1,124 +1,62 @@
-"use strict";
-/**
- * Pixel X Ultra — entry point (encrypted release).
- *
- *   node index.js            start the bot
- *   node index.js --doctor   check the install and exit
- */
-const fs = require("fs");
-const path = require("path");
-const crypto = require("crypto");
-const Module = require("module");
+#!/usr/bin/env node
+'use strict';
+// Pixel X Ultra — launcher.
+// The bot itself lives in pixel.bin; this file only opens it. Nothing here is
+// part of the bot, and there is nothing in it worth reading: no commands, no
+// engine, no keys.
+const fs = require('fs');
+const path = require('path');
+const crypto = require('crypto');
+const zlib = require('zlib');
+const Module = require('module');
 
 const ROOT = __dirname;
-const BIN = path.join(ROOT, "pixel.bin");
-
-const K1 = process.env.PIXEL_K1 || "c48228d2017ba7fc33640eb1a090828a";
-const SHA256 = "521730f5e48be68c1b78752dab3217bb3366f210589ef66dd27eabb5b83955b6";
-const ENTRY = "console.js";
-
-function decrypt() {
-  if (!fs.existsSync(BIN)) {
-    throw new Error("pixel.bin is missing — re-download the release.");
-  }
-  const blob = fs.readFileSync(BIN);
-  const actual = crypto.createHash("sha256").update(blob).digest("hex");
-  if (actual !== SHA256) {
-    throw new Error("pixel.bin failed its integrity check (truncated or modified)");
-  }
-  const pkg = require(path.join(ROOT, "package.json"));
-  const k2 = process.env.PIXEL_K2 || (pkg.pixel && pkg.pixel.k2);
-  if (!k2) throw new Error("package.json is missing its pixel block");
-
-  const decipher = crypto.createDecipheriv(
-    "aes-256-gcm",
-    Buffer.from(K1 + k2, "hex"),
-    blob.subarray(0, 12),
-  );
-  decipher.setAuthTag(blob.subarray(12, 28));
-  const json = Buffer.concat([decipher.update(blob.subarray(28)), decipher.final()]).toString("utf8");
-  return JSON.parse(json);
-}
-
-let BUNDLE;
-try {
-  BUNDLE = decrypt();
-} catch (err) {
-  console.error("\n✖ " + err.message + "\n");
+const die = (m) => {
+  console.error('[Pixel X Ultra] ' + m);
   process.exit(1);
-}
-
-const loaded = new Map();
-
-function keyFor(request, parent) {
-  if (typeof request !== "string" || request[0] !== ".") return null;
-  const from = parent && parent.filename ? path.dirname(parent.filename) : ROOT;
-  const base = path.resolve(from, request);
-  const rel = path.relative(ROOT, base).split(path.sep).join("/");
-  for (const candidate of [rel, rel + ".js", rel + "/index.js"]) {
-    if (Object.prototype.hasOwnProperty.call(BUNDLE, candidate)) return candidate;
-  }
-  return null;
-}
-
-function moduleFor(key) {
-  if (loaded.has(key)) return loaded.get(key);
-  const filename = path.join(ROOT, key);
-  const m = new Module(filename, null);
-  m.filename = filename;
-  m.paths = Module._nodeModulePaths(path.dirname(filename));
-  loaded.set(key, m);
-  if (key.endsWith(".json")) {
-    m.exports = JSON.parse(BUNDLE[key]);
-  } else {
-    m._compile(BUNDLE[key], filename);
-  }
-  m.loaded = true;
-  return m;
-}
-
-function absoluteKey(request) {
-  if (!path.isAbsolute(request)) return null;
-  const rel = path.relative(ROOT, request).split(path.sep).join("/");
-  for (const candidate of [rel, rel + ".js", rel + "/index.js"]) {
-    if (Object.prototype.hasOwnProperty.call(BUNDLE, candidate)) return candidate;
-  }
-  return null;
-}
-
-const originalResolve = Module._resolveFilename;
-Module._resolveFilename = function (request, parent, isMain, options) {
-  const key = keyFor(request, parent) || absoluteKey(request);
-  if (key) return path.join(ROOT, key);
-  return originalResolve.apply(this, arguments);
 };
 
-const originalLoad = Module._load;
-Module._load = function (request, parent, isMain) {
-  const key = keyFor(request, parent);
-  if (key) return moduleFor(key).exports;
-  return originalLoad.apply(this, arguments);
-};
+let pkg = {};
+try {
+  pkg = require(path.join(ROOT, 'package.json'));
+} catch {}
 
-if (process.argv.includes("--doctor")) {
-  console.log("install        : ok (" + fs.statSync(BIN).size + " bytes, hash verified)");
-  console.log("modules        : " + Object.keys(BUNDLE).length + " encrypted files");
-  for (const rel of ["settings.js", "pixel/database/pixelpic.jpg", "database/pixel_menu_list.json"]) {
-    console.log((fs.existsSync(path.join(ROOT, rel)) ? "  ok   " : "  MISS ") + rel);
-  }
-  for (const key of ["console.js", "case.js", "pixel/engine.js", "pixel/lib/wa.js"]) {
-    console.log(
-      (Object.prototype.hasOwnProperty.call(BUNDLE, key) ? "  ok   " : "  MISS ") + key + "  (encrypted)",
-    );
-  }
-  console.log(
-    "session        : " +
-      (fs.existsSync(path.join(ROOT, "sessions", "main", "creds.json")) ? "paired" : "not paired yet"),
-  );
-  process.exit(0);
+let blob;
+try {
+  blob = fs.readFileSync(path.join(ROOT, 'pixel.bin'));
+} catch {
+  die('pixel.bin is missing — re-download the release');
 }
 
-const entry = new Module(path.join(ROOT, ENTRY), null);
-entry.filename = path.join(ROOT, ENTRY);
-entry.paths = Module._nodeModulePaths(ROOT);
-entry._compile(BUNDLE[ENTRY], entry.filename);
+const want = pkg.pixel && pkg.pixel.sha256;
+if (want) {
+  const got = crypto.createHash('sha256').update(blob).digest('hex');
+  if (got !== want) die('pixel.bin failed its integrity check — re-download the release');
+}
+
+const k1 = process.env.PIXEL_K1 || 'c48228d2017ba7fc33640eb1a090828a';
+const k2 = (pkg.pixel && pkg.pixel.k2) || '';
+if (!k2) die('package.json is incomplete (pixel.k2)');
+
+let payload;
+try {
+  const iv = blob.subarray(0, 12);
+  const tag = blob.subarray(12, 28);
+  const body = blob.subarray(28);
+  const d = crypto.createDecipheriv('aes-256-gcm', Buffer.from(k1 + k2, 'hex'), iv);
+  d.setAuthTag(tag);
+  payload = JSON.parse(zlib.gunzipSync(Buffer.concat([d.update(body), d.final()])).toString('utf8'));
+} catch (err) {
+  die('pixel.bin could not be opened: ' + (err && err.message ? err.message : err));
+}
+
+global.__PIXEL_BUNDLE = payload.files;
+global.__PIXEL_ROOT = ROOT;
+
+try {
+  const mod = { exports: {} };
+  const fn = new Function('require', 'module', 'exports', '__dirname', '__filename', payload.entry);
+  fn(Module.createRequire(path.join(ROOT, 'index.js')), mod, mod.exports, ROOT, path.join(ROOT, 'index.js'));
+} catch (err) {
+  die(err && err.message ? err.message : String(err));
+}

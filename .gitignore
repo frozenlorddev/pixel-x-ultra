@@ -3,3 +3,4 @@ sessions/
 .env
 database/accounts/
 database/settings.json
+pixel/database/accounts/

@@ -1,1 +1,0 @@
-worker: node console.js
