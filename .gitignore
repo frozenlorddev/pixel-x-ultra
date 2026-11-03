@@ -4,3 +4,4 @@ sessions/
 database/accounts/
 database/settings.json
 pixel/database/accounts/
+pixel/lib/
